@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mehmet Akbaba | Siber Güvenlik Portfolyosu</title>
+  <meta name="description" content="Mehmet Akbaba siber güvenlik portfolyosu, CTF ve HTB çözüm raporları." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-bg"></div>
+
+  <header class="topbar">
+:root{
+  --bg:#f5f5f3;
+  --bg-soft:#fbfbfa;
+  --text:#101010;
+  --muted:#5f5f5f;
+  --line:#e7e5e2;
+  --card:#111111;
+  --card-2:#171717;
+  --card-text:#f5f5f5;
+  --card-muted:#c9c9c9;
+  --white:#ffffff;
+  --shadow:0 18px 48px rgba(0,0,0,.10);
+  --shadow-lg:0 28px 80px rgba(0,0,0,.16);
+  --radius:26px;
+  --radius-sm:18px;
+  --container:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Inter",system-ui,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 32%),
+    linear-gradient(180deg,#fcfcfb 0%, #f3f2ef 100%);
+}
+.site-bg{
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:linear-gradient(rgba(0,0,0,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.025) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:linear-gradient(180deg, rgba(255,255,255,.55), transparent 85%);
+}
+img{max-width:100%; display:block}
+a{text-decoration:none; color:inherit}
+button{font:inherit}
+.container{width:min(var(--container), calc(100% - 32px)); margin:0 auto; position:relative; z-index:1}
+
+.topbar{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); background:rgba(250,249,247,.75); border-bottom:1px solid rgba(0,0,0,.05)}
+.nav{display:flex; justify-content:space-between; align-items:center; min-height:74px; gap:16px}
+.brand{display:inline-flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.01em}
+.brand-dot{width:12px; height:12px; border-radius:999px; background:#111; box-shadow:0 0 0 6px rgba(0,0,0,.06)}
+.nav-links{display:flex; gap:10px; flex-wrap:wrap}
+.nav-links a{padding:10px 14px; color:var(--muted); border-radius:999px; transition:.22s ease}
+.nav-links a:hover{background:#fff; color:#111; box-shadow:0 8px 20px rgba(0,0,0,.06)}
+
+.hero{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:44px;
+  align-items:center;
+  min-height:calc(100vh - 88px);
+  padding:42px 0 70px;
+}
+.profile-shell{position:relative}
+.profile-card{
+  position:relative; z-index:1;
+  background:linear-gradient(180deg,#191919,#101010);
+  border-radius:34px; padding:18px; box-shadow:var(--shadow-lg); border:1px solid rgba(255,255,255,.08);
+}
+.profile-image{
+  width:100%; aspect-ratio:1 / 1.2; object-fit:cover; object-position:center 26%;
+  border-radius:24px;
+}
+.hero-copy h1{
+  margin:14px 0 18px; font-size:clamp(2.3rem, 4.5vw, 4.8rem); line-height:.98; letter-spacing:-.045em;
+}
+.eyebrow,.section-kicker,.band-kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:999px; font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em;
+  background:#fff; border:1px solid var(--line); color:#111;
+}
+.eyebrow::before,.section-kicker::before,.band-kicker::before{
+  content:""; width:8px; height:8px; border-radius:50%; background:#111;
+}
+.hero-text,.section-head p,.contact-box p{color:var(--muted); line-height:1.85}
+.hero-actions,.contact-actions,.report-actions,.archive-controls,.filter-group{display:flex; gap:12px; flex-wrap:wrap}
+.hero-actions{margin-top:28px}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:48px; padding:12px 18px; border-radius:14px; font-weight:800; transition:.22s ease;
+  border:1px solid transparent; cursor:pointer;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#111; color:#fff; box-shadow:0 12px 26px rgba(0,0,0,.10)}
+.btn-light{background:#fff; color:#111; border-color:var(--line)}
+.btn-dark{background:#161616; color:#fff; border-color:#2a2a2a}
+
+.hero-stats{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:30px;
+}
+.stat-card{
+  background:#fff; border:1px solid var(--line); border-radius:20px; padding:18px;
+  box-shadow:0 10px 26px rgba(0,0,0,.04)
+}
+.stat-card strong{display:block; font-size:1.1rem; margin-bottom:6px}
+.stat-card span{color:var(--muted); font-size:.95rem}
+
+.section{padding:12px 0 66px}
+.section-head{max-width:860px; margin-bottom:24px}
+.section-head h2{margin:14px 0 10px; font-size:clamp(1.75rem, 3vw, 3rem); line-height:1.05; letter-spacing:-.03em}
+
+.featured-grid{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px;
+}
+.report-card{
+  background:linear-gradient(180deg, #171717 0%, #111111 100%);
+  color:var(--card-text); border-radius:28px; padding:22px; border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow); display:flex; flex-direction:column; min-height:290px;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.report-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 26px 62px rgba(0,0,0,.14);
+  border-color:rgba(255,255,255,.12);
+}
+.report-meta{display:flex; gap:8px; flex-wrap:wrap}
+.chip{
+  display:inline-flex; align-items:center; min-height:34px; padding:7px 12px; border-radius:999px;
+  background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.08); font-size:.8rem; font-weight:700;
+}
+.chip-dark{background:#212121}
+.report-card h3{font-size:1.38rem; line-height:1.15; margin:18px 0 10px}
+.report-card p{color:var(--card-muted); line-height:1.75; margin:0}
+.report-tags{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 18px}
+.report-tags span{
+  display:inline-flex; min-height:34px; align-items:center; padding:7px 12px;
+  border-radius:999px; background:#1f1f1f; color:#fff; border:1px solid #2e2e2e; font-size:.8rem; font-weight:700;
+}
+.report-actions{margin-top:auto; align-items:center}
+.text-action{color:#fff; opacity:.85; font-weight:700; padding:10px 4px}
+.text-action:hover{opacity:1}
+.project-bands{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:22px
+}
+.band-card{
+  background:#fff; border:1px solid var(--line); border-radius:28px; padding:24px; box-shadow:0 10px 24px rgba(0,0,0,.04); min-height:200px;
+  transition:.22s ease
+}
+.band-card:hover{transform:translateY(-3px); box-shadow:0 18px 36px rgba(0,0,0,.08)}
+.band-card h3{margin:16px 0 10px; font-size:1.45rem; line-height:1.15}
+.band-card p{margin:0; color:var(--muted); line-height:1.8}
+.static-card{background:linear-gradient(180deg,#fafaf8,#f3f2ef)}
+
+.contact-box{
+  background:#fff; border:1px solid var(--line); border-radius:34px; padding:28px;
+  box-shadow:0 14px 34px rgba(0,0,0,.05);
+  display:flex; justify-content:space-between; gap:22px; align-items:center;
+}
+
+.archive-main{padding:20px 0 70px}
+.archive-hero{padding:26px 0 22px}
+.archive-hero h1{margin:14px 0 10px; font-size:clamp(2.1rem,4vw,4rem); line-height:1.02; letter-spacing:-.04em}
+.archive-hero p{max-width:780px; color:var(--muted); line-height:1.85}
+.archive-controls{margin-top:26px; align-items:center}
+.archive-controls input{
+  flex:1 1 260px; min-height:50px; border-radius:14px; border:1px solid var(--line); background:#fff;
+  padding:0 16px; outline:none; box-shadow:0 8px 20px rgba(0,0,0,.03)
+}
+.filter-btn{
+  min-height:46px; padding:10px 16px; border-radius:14px; border:1px solid var(--line); background:#fff; color:#111; font-weight:800; cursor:pointer;
+}
+.filter-btn.active{background:#111; color:#fff; border-color:#111}
+
+.archive-list-full{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+
+@media (max-width: 940px){
+  .hero{grid-template-columns:1fr; min-height:auto}
+  .profile-shell{max-width:420px; margin:0 auto}
+  .hero-copy{text-align:center}
+  .hero-actions,.hero-stats{justify-content:center}
+  .featured-grid,.project-bands,.archive-list-full{grid-template-columns:1fr}
+  .contact-box{flex-direction:column; align-items:flex-start}
+}
+@media (max-width: 680px){
+  .nav{padding:10px 0 12px; min-height:auto; flex-direction:column}
+  .nav-links{justify-content:center}
+  .hero{padding-top:24px}
+  .hero-stats{grid-template-columns:1fr}
+}
+
+
+.nav-dropdown{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+}
+
+.nav-dropdown-toggle{
+  padding:10px 14px;
+  color:var(--muted);
+  border-radius:999px;
+  transition:.22s ease;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font:inherit;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown:hover .nav-dropdown-toggle,
+.active-link{
+  background:#fff;
+  color:#111;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+.nav-dropdown-menu{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:210px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 18px 34px rgba(0,0,0,.08);
+  padding:8px;
+  display:none;
+  z-index:60;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu{
+  display:block;
+}
+
+.nav-dropdown-menu a{
+  display:block;
+  padding:12px 14px;
+  border-radius:12px;
+  color:#111;
+}
+
+.nav-dropdown-menu a:hover{
+  background:#f5f5f3;
+}
+
+@media (max-width: 680px){
+  .nav-dropdown{
+    width:100%;
+    justify-content:center;
+  }
+  .nav-dropdown-menu{
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+
+
+
+/* Stable nav dropdown */
+.nav-links{
+  align-items:center;
+}
+
+.nav-dropdown{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+}
+
+.nav-dropdown-toggle{
+  padding:10px 14px;
+  color:var(--muted);
+  border-radius:999px;
+  transition:.22s ease;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font:inherit;
+  line-height:1.2;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle,
+.active-link{
+  background:#fff;
+  color:#111;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+.nav-dropdown-menu{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:250px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 18px 34px rgba(0,0,0,.08);
+  padding:8px;
+  display:none;
+  z-index:60;
+}
+
+.nav-dropdown.open .nav-dropdown-menu{
+  display:block;
+}
+
+.nav-dropdown-menu a{
+  display:block;
+  padding:12px 14px;
+  border-radius:12px;
+  color:#111;
+}
+
+.nav-dropdown-menu a:hover{
+  background:#f5f5f3;
+}
+
+@media (max-width: 680px){
+  .nav-dropdown{
+    width:100%;
+    justify-content:center;
+  }
+  .nav-dropdown-menu{
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+
+
+/* Simplified Web Zafiyetleri nav */
+.nav-dropdown,
+.nav-dropdown-menu,
+.nav-dropdown-toggle{
+  display:none !important;
+}
+
+
+/* Home page cleanup after section removals */
+.hero{
+  padding-bottom: 36px;
+}
+
+.hero-stats, .stat-card{display:none !important;}
+
+/* override: reduce hero title by 10% */
+.hero-title{font-size: 0.729em;
+  max-width: 560px;
+
+  display: block;
+
+  word-break: break-word;
+
+  overflow-wrap: anywhere;
+
+  line-height: 1.12;
+}
+
+
+/* premium hero text wrap safety */
+@media (max-width: 992px) {
+  .hero-title {
+    max-width: 100%;
+  }
+}
+
+/* fallback equal style */
+.hero-subtitle, .hero-description{
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+
+/* HERO HOVER EFFECT */
+.hero-copy h1 {
+  transition: all 0.3s ease;
+}
+
+.hero-copy h1:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.hero-subtitle,.hero-description,.hero-content p{
+  font-size:0.8em;
+}
+/* fallback equal style */
+.hero-subtitle, .hero-description{
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+
+/* HERO HOVER EFFECT */
+.hero-copy h1 {
+  transition: all 0.3s ease;
+}
+
+.hero-copy h1:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Zafiyetleri | Mehmet Akbaba</title>
+  <meta name="description" content="Web zafiyetleri arşivi: SQL Injection ve XSS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-bg"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>Cyber Portfolio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#about">Hakkımda</a>
+        <a href="index.html#featured">Ana Sayfa</a>
+        <a href="ctf.html">CTF Arşivi</a>
+        <a href="web-vulnerabilities.html">Web Zafiyetleri</a>
+        <a href="index.html#contact">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="archive-main">
+    <section class="archive-hero container">
+      <span class="eyebrow">Web Zafiyetleri</span>
+      <h1 style="font-size:clamp(32px, 3.5vw, 60px); line-height:1.1; max-width:600px;">Web zafiyetleri lab çözümleri:</h1>
+    </section>
+
+    
+    <section class="section container">
+      <div class="archive-list archive-list-full">
+        <article id="sql-injection" class="report-card" data-kind="WEB">
+          <div class="report-meta">
+            <span class="chip chip-dark">WEB</span>
+            <span class="chip">SQL Injection</span>
+          </div>
+          <h3>SQL Injection</h3>
+          <p>
+            Web for pentester-1 ve Bwapp makinelerinden çözdüğüm labları görüntülemek için lütfen tıklayın.
+          </p>
+          <div class="report-tags">
+            <span>SQLi</span>
+            <span>Web Security</span>
+            <span>PDF Rapor</span>
+          </div>
+          <div class="report-actions">
+            <a class="btn btn-dark" href="pdf/sqli.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+            <a class="text-action" href="reports/SQL injection çözümleri.pdf" download>İndir</a>
+          </div>
+        </article>
+
+        
+<article id="xss" class="report-card" data-kind="WEB">
+  <div class="report-meta">
+    <span class="chip chip-dark">WEB</span>
+    <span class="chip">XSS</span>
+  </div>
+  <h3>XSS</h3>
+  <p>
+    Web for pentester-1 ve Bwapp makinelerinden çözdüğüm XSS lablarını görüntülemek için lütfen çözümü aç butonuna tıklayın.
+  </p>
+  <div class="report-tags">
+    <span>XSS</span>
+    <span>Web Security</span>
+    <span>PDF Rapor</span>
+  </div>
+  <div class="report-actions">
+    <a class="btn btn-dark" href="pdf/xss.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+    <a class="text-action" href="reports/Xss çözümleri.pdf" download>İndir</a>
+  </div>
+</article>
+
+      </div>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+const searchInput = document.getElementById('searchInput');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.archive-list .report-card');
+
+let activeFilter = 'all';
+
+function applyFilters() {
+  const q = (searchInput?.value || '').trim().toLowerCase();
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    const kind = card.dataset.kind || '';
+    const matchesFilter = activeFilter === 'all' || kind === activeFilter;
+    const matchesSearch = !q || text.includes(q);
+    card.style.display = matchesFilter && matchesSearch ? '' : 'none';
+  });
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(x => x.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+
+if (searchInput) {
+  searchInput.addEventListener('input', applyFilters);
+}
+
+// Stable dropdown behavior
+document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+  const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.querySelectorAll('.nav-dropdown.open').forEach(other => {
+      if (other !== dropdown) other.classList.remove('open');
+    });
+    dropdown.classList.toggle('open');
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.nav-dropdown.open').forEach(dropdown => {
+    dropdown.classList.remove('open');
+  });
+});
+
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>Cyber Portfolio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">Hakkımda</a>
+        <a href="#featured">Ana Sayfa</a>
+        <a href="ctf.html">CTF Arşivi</a>
+        <a href="web-vulnerabilities.html">Web Zafiyetleri</a>
+        <a href="#contact">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="profile-shell">
+        <div class="profile-card">
+          <img src="assets/profile.jpg" alt="Mehmet Akbaba profil fotoğrafı" class="profile-image" />
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <span class="eyebrow">Siber Güvenlik</span>
+        <h1 style="font-size:clamp(32px, 3.5vw, 60px); line-height:1.1; max-width:600px;">Hack The Box, VulnHub ve web güvenliği lab ortamlarında gerçekleştirdiğim çözüm analizlerini ve teknik raporları paylaşıyorum.</h1>
+        <p class="hero-text">CTF makineleri, web uygulama zafiyetleri ve lab senaryoları üzerine hazırladığım içerikleri düzenli, sade ve teknik odaklı bir arşiv yapısında sunuyorum.</p>
+
+        <div class="hero-actions">
+          <a href="ctf.html" class="btn btn-primary">CTF Arşivine Git</a>
+          <a href="web-vulnerabilities.html" class="btn btn-light">Web Zafiyet Çözümleri</a>
+        </div>
+
+          
+        </div>
+      </div>
+    </section>
+
+    
+<section id="about" class="section container">
+  <div class="section-head">
+    <span class="section-kicker">Hakkımda</span>
+    <h2>Hakkımda</h2>
+    <p>
+      Erzincan Binali Yıldırım Üniversitesi Bilgisayar Mühendisliği öğrencisiyim ve siber güvenlik alanında aktif olarak kendimi geliştirmekteyim.
+      Bu süreçte yalnızca teorik bilgiye değil, aynı zamanda pratik deneyime de odaklanarak çeşitli platformlarda yoğun şekilde çalışmalar yürütüyorum.
+    </p>
+    <p>
+      Üniversitem bünyesinde <strong>CyberShield EBYÜ</strong> adlı siber güvenlik topluluğunu kurarak başkanlığını üstlendim. Bu kulüp kapsamında
+      OWASP Top 10, web güvenliği ve lab çözümleri üzerine eğitimler ve uygulamalı çalışmalar organize ediyorum.
+    </p>
+    <p>
+      Web güvenliği alanında özellikle <strong>Web for Pentester</strong>, <strong>bWAPP</strong>, <strong>PortSwigger</strong>, 
+      <strong>Hackviser</strong> ve <strong>Hack The Box</strong> gibi platformlarda çeşitli lablar çözerek pratik yetkinliğimi geliştirdim.
+      Bu çalışmalar sayesinde gerçek dünya senaryolarına yakın güvenlik problemlerini analiz etme ve çözme becerisi kazandım.
+    </p>
+    <p>
+      Analitik düşünme yeteneğine sahip, öğrenmeye açık ve disiplinli bir yapıya sahibim. Aynı zamanda ekip çalışmasına yatkın olup,
+      teknik bilgi paylaşımı ve birlikte problem çözme süreçlerinde aktif rol alırım.
+    </p>
+    <p>
+      Hedefim; siber güvenlik alanında uzmanlaşarak özellikle web uygulama güvenliği ve penetration testing konularında profesyonel seviyeye ulaşmak
+      ve bu alanda değer üreten projelerde yer almaktır.
+    </p>
+  </div>
+</section>
+
+
+    
+<section id="contact" class="section container">
+  <div class="contact-box">
+    <div>
+      <span class="section-kicker">İletişim</span>
+      <h2>İletişim</h2>
+    </div>
+    <div class="contact-actions">
+      <a href="mailto:mehmetakbaba007@gmail.com" class="btn btn-primary">Mail Gönder</a>
+      <a href="https://instagram.com/mhmt.akb07" target="_blank" class="btn btn-light">Instagram</a>
+      <a href="https://www.linkedin.com/in/mehmet-akbaba-653790285/" target="_blank" class="btn btn-dark">LinkedIn</a>
+      <a href="https://github.com/mehmetakbaba007" target="_blank" class="btn btn-light">GitHub</a>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTF / HTB Arşivi | Mehmet Akbaba</title>
+  <meta name="description" content="CTF ve Hack The Box çözüm raporları arşivi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-bg"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>Cyber Portfolio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="#archive">Arşiv</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="archive-main">
+    <section class="archive-hero container">
+      <h1 style="font-size:clamp(32px, 3.5vw, 60px); line-height:1.1; max-width:600px;">Hack The Box ve VulnHub üzerinden çözdüğüm CTF makinelerinin çözümleri</h1>
+
+      <div class="archive-controls">
+        <input id="searchInput" type="text" placeholder="Rapor ara..." />
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">Tümü</button>
+          <button class="filter-btn" data-filter="HTB">HTB</button>
+          <button class="filter-btn" data-filter="CTF">CTF</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="archive" class="container">
+      <div class="archive-list archive-list-full">
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB CAP</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB CAP.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB CAP.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB codeparttwo</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB codeparttwo.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB codeparttwo.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB conversor</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB conversor.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB conversor.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB Expressway</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB Expressway.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB Expressway.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB facts</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB facts.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB facts.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB monitorsfour</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB monitorsfour.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB monitorsfour.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB wingdata</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB wingdata.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB wingdata.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>DEFENCESPACECTF-2017</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/DEFENCESPACECTF-2017.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/DEFENCESPACECTF-2017.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>Hackfest2016</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/Hackfest2016.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/Hackfest2016.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>Kioptrix</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/Kioptrix.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/Kioptrix.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>PWNLAB İNİT</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/PWNLAB İNİT.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/PWNLAB İNİT.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
