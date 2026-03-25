@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTF / HTB Arşivi | Mehmet Akbaba</title>
+  <meta name="description" content="CTF ve Hack The Box çözüm raporları arşivi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-bg"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>Cyber Portfolio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="#archive">Arşiv</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="archive-main">
+    <section class="archive-hero container">
+      <h1 style="font-size:clamp(32px, 3.5vw, 60px); line-height:1.1; max-width:600px;">Hack The Box ve VulnHub üzerinden çözdüğüm CTF makinelerinin çözümleri</h1>
+
+      <div class="archive-controls">
+        <input id="searchInput" type="text" placeholder="Rapor ara..." />
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">Tümü</button>
+          <button class="filter-btn" data-filter="HTB">HTB</button>
+          <button class="filter-btn" data-filter="CTF">CTF</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="archive" class="container">
+      <div class="archive-list archive-list-full">
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB CAP</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB CAP.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB CAP.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB codeparttwo</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB codeparttwo.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB codeparttwo.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB conversor</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB conversor.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB conversor.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB Expressway</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB Expressway.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB Expressway.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB facts</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB facts.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB facts.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB monitorsfour</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB monitorsfour.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB monitorsfour.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="HTB">
+        <div class="report-meta">
+          <span class="chip chip-dark">HTB</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>HTB wingdata</h3>
+        <p>Hack The Box çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>HTB</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/HTB wingdata.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/HTB wingdata.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>DEFENCESPACECTF-2017</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/DEFENCESPACECTF-2017.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/DEFENCESPACECTF-2017.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>Hackfest2016</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/Hackfest2016.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/Hackfest2016.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>Kioptrix</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/Kioptrix.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/Kioptrix.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+
+      <article class="report-card" data-kind="CTF">
+        <div class="report-meta">
+          <span class="chip chip-dark">CTF</span>
+          <span class="chip">PDF</span>
+        </div>
+        <h3>PWNLAB İNİT</h3>
+        <p>CTF çözüm raporu. Tıklayınca rapor doğrudan yeni sekmede açılır.</p>
+        <div class="report-tags">
+          <span>CTF</span>
+          <span>Writeup</span>
+          <span>Portfolyo</span>
+        </div>
+        <div class="report-actions">
+          <a class="btn btn-dark" href="reports/PWNLAB İNİT.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+          <a class="text-action" href="reports/PWNLAB İNİT.pdf" download>İndir</a>
+        </div>
+      </article>
+    
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
