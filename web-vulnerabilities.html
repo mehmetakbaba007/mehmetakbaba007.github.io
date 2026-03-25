@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Zafiyetleri | Mehmet Akbaba</title>
+  <meta name="description" content="Web zafiyetleri arşivi: SQL Injection ve XSS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-bg"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>Cyber Portfolio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#about">Hakkımda</a>
+        <a href="index.html#featured">Ana Sayfa</a>
+        <a href="ctf.html">CTF Arşivi</a>
+        <a href="web-vulnerabilities.html">Web Zafiyetleri</a>
+        <a href="index.html#contact">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="archive-main">
+    <section class="archive-hero container">
+      <span class="eyebrow">Web Zafiyetleri</span>
+      <h1 style="font-size:clamp(32px, 3.5vw, 60px); line-height:1.1; max-width:600px;">Web zafiyetleri lab çözümleri:</h1>
+    </section>
+
+    
+    <section class="section container">
+      <div class="archive-list archive-list-full">
+        <article id="sql-injection" class="report-card" data-kind="WEB">
+          <div class="report-meta">
+            <span class="chip chip-dark">WEB</span>
+            <span class="chip">SQL Injection</span>
+          </div>
+          <h3>SQL Injection</h3>
+          <p>
+            Web for pentester-1 ve Bwapp makinelerinden çözdüğüm labları görüntülemek için lütfen tıklayın.
+          </p>
+          <div class="report-tags">
+            <span>SQLi</span>
+            <span>Web Security</span>
+            <span>PDF Rapor</span>
+          </div>
+          <div class="report-actions">
+            <a class="btn btn-dark" href="pdf/sqli.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+            <a class="text-action" href="reports/SQL injection çözümleri.pdf" download>İndir</a>
+          </div>
+        </article>
+
+        
+<article id="xss" class="report-card" data-kind="WEB">
+  <div class="report-meta">
+    <span class="chip chip-dark">WEB</span>
+    <span class="chip">XSS</span>
+  </div>
+  <h3>XSS</h3>
+  <p>
+    Web for pentester-1 ve Bwapp makinelerinden çözdüğüm XSS lablarını görüntülemek için lütfen çözümü aç butonuna tıklayın.
+  </p>
+  <div class="report-tags">
+    <span>XSS</span>
+    <span>Web Security</span>
+    <span>PDF Rapor</span>
+  </div>
+  <div class="report-actions">
+    <a class="btn btn-dark" href="pdf/xss.pdf" target="_blank" rel="noopener noreferrer">Çözümü Aç</a>
+    <a class="text-action" href="reports/Xss çözümleri.pdf" download>İndir</a>
+  </div>
+</article>
+
+      </div>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
